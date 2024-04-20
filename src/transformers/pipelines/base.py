@@ -1199,12 +1199,12 @@ class Pipeline(_ScikitCompat, PushToHubMixin):
         forward_params = {**self._forward_params, **forward_params}
         postprocess_params = {**self._postprocess_params, **postprocess_params}
 
-        self.call_count += 1
-        if self.call_count > 10 and self.framework == "pt" and self.device.type == "cuda":
-            logger.warning_once(
-                "You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a"
-                " dataset",
-            )
+        # self.call_count += 1
+        # if self.call_count > 10 and self.framework == "pt" and self.device.type == "cuda":
+        #     logger.warning_once(
+        #         "You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a"
+        #         " dataset",
+        #     )
 
         is_dataset = Dataset is not None and isinstance(inputs, Dataset)
         is_generator = isinstance(inputs, types.GeneratorType)
